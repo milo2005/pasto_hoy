@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Role } from "../../dtos/operator.dto";
+import { Role } from "../../../utils/decorators";
 
 @Schema()
 export class Operator {

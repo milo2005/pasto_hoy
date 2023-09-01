@@ -1,8 +1,6 @@
 import { IsDate, IsEmail, IsEnum, IsNotEmpty, MinLength } from "class-validator";
+import { Role } from "../../utils/decorators";
 
-export enum Role {
-    Admin = "admin", Editor = "editor"
-}
 
 export class OperatorInfoDto {
     @IsNotEmpty()

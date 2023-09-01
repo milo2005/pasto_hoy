@@ -1,6 +1,6 @@
 import { IsEnum, IsNotEmpty } from "class-validator";
-import { Role } from "../../operator/dtos/operator.dto";
-import { IsNull } from "src/utils/validation";
+import { Role } from "src/utils/decorators";
+import { IsNull } from "../../utils/validation";
 
 
 export class TokenDto {
