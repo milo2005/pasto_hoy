@@ -1,32 +1,34 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { EventDto } from '../dtos/event.dto';
+import { EventDao } from '../data/dao/event.dao';
 
 @Controller('events')
 export class EventsController {
 
+    constructor(private readonly service: EventDao){}
 
     @Get("active")
     async getActive(@Query("page") page?: number, @Query("page_size") pageSize?: number): Promise<EventDto[]>{
-        return [];
+        return this.service.getOnlyActive(page, pageSize);
     }
 
     @Get()
     async getAll(@Query("page") page?: number, @Query("page_size") pageSize?: number): Promise<EventDto[]> {
-        return [];
+        return this.service.getAll(page, pageSize);
     }
 
     @Post()
-    add(@Body() event: EventDto) {
-
+    async add(@Body() event: EventDto) {
+        await this.service.insert(event);
     }
 
     @Put(":id")
-    update(@Param("id") id:string, @Body() event: EventDto){
-
+    async update(@Param("id") id:string, @Body() event: EventDto){
+        await this.service.update(id, event);
     }
 
     @Delete(":id")
-    remove(@Param("id") id:string) {
-
+    async remove(@Param("id") id:string) {
+        await this.service.remove(id);
     }
 }

@@ -24,12 +24,8 @@ export class OperatorDao{
         return this.mapToDto(result.id, result);
     }
 
-    async getAll(page?: number, pageSize?: number) {
-        let query =  this.model.find({
-            date:{
-                $gte: new Date()
-            }
-        } )
+    async getAll(page?: number, pageSize?: number): Promise<OperatorDto[]> {
+        let query =  this.model.find()
         .sort({createdAt: -1});
         
         if(page != null) {

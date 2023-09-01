@@ -5,6 +5,10 @@ export class EventDto {
     
     id?: string;
 
+    @IsNull()
+    @IsDate()
+    createdAt?: Date;
+    
     @IsNotEmpty()
     name: string;
 

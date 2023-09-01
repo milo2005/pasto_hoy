@@ -8,23 +8,33 @@ import { User, UserSchema } from './data/schemas/user.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { EnvService } from 'src/env/env.service';
 import { EnvModule } from 'src/env/env.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './guards/auth.guard';
 
 @Module({
   imports: [
     OperatorModule,
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtModule.registerAsync({
-      global:true,
+      global: true,
       imports: [EnvModule],
       inject: [EnvService],
       useFactory: async (config: EnvService) => {
         return {
-            secret: config.secret
+          secret: config.secret
         };
-    }
+      }
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserDao]
+  providers: [
+    AuthService,
+    UserDao,
+    // Add Global Guard for all Authentication
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    }
+  ]
 })
-export class AuthModule {}
+export class AuthModule { }

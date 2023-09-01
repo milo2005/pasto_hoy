@@ -1,5 +1,4 @@
 import { IsDate, IsEmail, IsEnum, IsNotEmpty, MinLength } from "class-validator";
-import { IsNull } from "src/utils/validation";
 
 export enum Role {
     Admin = "admin", Editor = "editor"
