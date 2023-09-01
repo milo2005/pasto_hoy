@@ -1,32 +1,30 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { PlanDto } from '../dtos/plan.dto';
+import { PlanDao } from '../data/daos/plan.dao';
 
 @Controller('plans')
 export class PlansController {
 
-    @Get("active")
-    async getActive(@Query("page") page?: number, @Query("page_size") pageSize?: number): Promise<PlanDto[]>{
-        return [];
-    }
+    constructor(private readonly service: PlanDao){}
 
     @Get()
     async getAll(@Query("page") page?: number, @Query("page_size") pageSize?: number): Promise<PlanDto[]> {
-        return [];
+        return this.service.getAll(page, pageSize);
     }
 
     @Post()
-    add(@Body() event: PlanDto) {
-
+    async add(@Body() plan: PlanDto) {
+        await this.service.insert(plan);
     }
 
     @Put(":id")
-    update(@Param("id") id:string, @Body() event: PlanDto){
-
+    async update(@Param("id") id:string, @Body() plan: PlanDto){
+        await this.service.update(id, plan);
     }
 
     @Delete(":id")
-    remove(@Param("id") id:string) {
-
+    async remove(@Param("id") id:string) {
+        await this.service.remove(id);
     }
 
 }

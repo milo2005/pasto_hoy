@@ -15,7 +15,7 @@ export class Operator {
     @Prop({type: String, enum: Role})
     role: Role;
 
-    @Prop()
+    @Prop({type: Date})
     createdAt: Date;
 }
 
