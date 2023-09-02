@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsPhoneNumber, IsUrl, Min } from "class-validator";
+import { IsDate, IsDateString, IsNotEmpty, IsPhoneNumber, IsUrl, Min } from "class-validator";
 import { IsNull } from "../../utils/validation";
 
 export class EventDto {
@@ -12,8 +12,8 @@ export class EventDto {
     @IsNotEmpty()
     name: string;
 
-    @IsDate()
-    date: Date;
+    @IsDateString()
+    date: string;
 
     @IsNotEmpty()
     description: string;
@@ -35,7 +35,7 @@ export class EventDto {
     cost?: number;
     
     @IsNull()
-    @IsPhoneNumber()
+    @IsNotEmpty()
     phone?: string;
 
     @IsNull()

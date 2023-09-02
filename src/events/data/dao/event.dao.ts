@@ -9,7 +9,7 @@ export class EventDao {
     constructor(@InjectModel(Event.name) private model: Model<Event>){}
 
     async insert(event: EventDto) {
-        const data: Event = {...event, createdAt: new Date() };
+        const data: Event = {...event, date: new Date(event.date), createdAt: new Date() };
         const newEvent = new this.model(data);
         await newEvent.save();
     }
@@ -66,7 +66,7 @@ export class EventDao {
             name: data.name,
             createdAt: data.createdAt,
             address: data.address,
-            date: data.date,
+            date: data.date.toISOString(),
             description: data.description,
             image: data.image,
             owner: data.owner,
