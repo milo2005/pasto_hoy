@@ -39,7 +39,7 @@ export class PlanDao{
     }
 
     async update(id: string, event: PlanDto) {
-        await this.model.findOneAndReplace({_id: id}, event);
+        await this.model.updateOne({_id: id}, {$set: event});
     }
 
     private mapToDto(id: string, data: Plan): PlanDto{

@@ -14,7 +14,7 @@ export class AuthController {
     @ApiPublic()
     @Post("login")
     async login(@Body() credentials: CredentialsDto): Promise<TokenDto>{
-        const result = this.service.login(credentials.email, credentials.password);
+        const result = await this.service.login(credentials.email, credentials.password);
         if(!result){
             throw new UnauthorizedException();
         }
@@ -29,9 +29,9 @@ export class AuthController {
     }
 
     @ApiPublic()
-    @Post("opertator/login")
+    @Post("operator/login")
     async loginOperator(@Body() credentials: CredentialsDto): Promise<TokenDto>{
-        const result = this.service.loginOperator(credentials.email, credentials.password);
+        const result = await this.service.loginOperator(credentials.email, credentials.password);
         if(!result){
             throw new UnauthorizedException();
         }

@@ -57,7 +57,7 @@ export class EventDao {
     }
 
     async update(id: string, event: EventDto) {
-        await this.model.findOneAndReplace({_id: id}, event);
+        await this.model.updateOne({_id: id}, {$set: event});
     }
 
     private mapToDto(id: string, data: Event): EventDto{

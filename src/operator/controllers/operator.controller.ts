@@ -3,7 +3,7 @@ import { OperatorDao } from '../data/daos/operator.dao';
 import { OperatorInfoDto } from '../dtos/operator.dto';
 import { Role, Roles } from '../../utils/decorators';
 
-@Controller('operator')
+@Controller('operators')
 export class OperatorController {
 
     constructor(private readonly service: OperatorDao){}

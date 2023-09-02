@@ -64,7 +64,7 @@ export class OperatorDao{
     }
 
     async update(id: string, operator: OperatorInfoDto) {
-        await this.model.findOneAndReplace({_id: id}, operator);
+        await this.model.updateOne({_id: id}, {$set: operator});
     }
 
     private mapToDto(id: string, data: Operator): OperatorDto{
