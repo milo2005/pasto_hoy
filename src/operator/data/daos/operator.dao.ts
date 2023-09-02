@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Operator } from "../schemas/operator.schema";
 import { Model } from "mongoose";
 import { OperatorInfoDto, OperatorDto } from "src/operator/dtos/operator.dto";
+import { Role } from "../../../utils/decorators";
 
 @Injectable()
 export class OperatorDao{
@@ -39,8 +40,23 @@ export class OperatorDao{
         const result = await query.exec();
 
         return result.map((doc)=> this.mapToDto(doc.id, doc));
+    }
 
+    async getByRole(role: Role, page?: number, pageSize?: number): Promise<OperatorDto[]> {
+        let query =  this.model.find({ role  })
+        .sort({createdAt: -1});
+        
+        if(page != null) {
+            const size = pageSize ?? 50;
+            query = query
+            .skip((page-1) * size)
+            .limit(size)
 
+        }
+        
+        const result = await query.exec();
+
+        return result.map((doc)=> this.mapToDto(doc.id, doc));
     }
 
     async remove(id: string) {

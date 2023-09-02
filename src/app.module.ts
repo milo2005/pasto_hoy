@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EnvModule } from './env/env.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EnvService } from './env/env.service';
+import { AppInit } from './app-init.service';
 
 
 @Module({
@@ -27,6 +28,6 @@ import { EnvService } from './env/env.service';
     ConfigModule
   ],
   controllers: [],
-  providers: []
+  providers: [ AppInit ]
 })
 export class AppModule {}
