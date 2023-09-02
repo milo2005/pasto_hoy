@@ -24,8 +24,8 @@ export class PlateRestrictionsService {
         }
 
         const seedCount = seed.seed.length;
-        const diffMillis = new Date().getMilliseconds() - seed.seedDate.getMilliseconds();
-        const diffDays = Math.ceil(diffMillis / 86400000 );
+        //const diffMillis = new Date().getMilliseconds() - seed.seedDate.getMilliseconds();
+        //const diffDays = Math.ceil(diffMillis / 86400000 );
 
         
 
