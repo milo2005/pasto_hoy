@@ -8,13 +8,21 @@ export class PlateRestrictionsController {
 
     @Get()
     getRestrictions(): PlateRestrictionDto {
-        return {} as PlateRestrictionDto;
+        return {
+            monday: [0,1],
+            tuesday: [2, 3],
+            wednesday: [4, 5],
+            thursday: [6, 7],
+            friday: [8, 9],
+            saturday: [],
+            sunday: []
+        };
     }
 
     @Roles(Role.Admin, Role.Editor)
     @Put()
     updateSeed(@Body() seed: PlateSeedDto){
-
+        
     }
 
 }
