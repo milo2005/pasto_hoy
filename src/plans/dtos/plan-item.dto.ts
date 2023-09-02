@@ -13,7 +13,7 @@ export class PlanItemDto {
     address?: string;
 
     @IsNull()
-    @IsPhoneNumber()
+    @IsNotEmpty()
     phone?: string;
 
     @IsNull()
