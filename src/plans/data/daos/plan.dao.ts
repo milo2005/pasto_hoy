@@ -46,7 +46,7 @@ export class PlanDao{
         return {
             id,
             name: data.name,
-            createdAt: data.createdAt,
+            createdAt: data.createdAt.toISOString(),
             description: data.description,
             image: data.image,
             shortDescription: data.shortDescription,

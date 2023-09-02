@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsUrl, IsArray, ValidateNested, IsDate } from "class-validator";
+import { IsNotEmpty, IsUrl, IsArray, ValidateNested, IsDate, IsDateString } from "class-validator";
 import { PlanItemDto } from "./plan-item.dto";
 import { IsNull } from "../../utils/validation";
 import { Type } from "class-transformer";
@@ -11,8 +11,8 @@ export class PlanDto {
     name: string;
 
     @IsNull()
-    @IsDate()
-    createdAt?: Date;
+    @IsDateString()
+    createdAt?: string;
 
     @IsNotEmpty()
     description: string;

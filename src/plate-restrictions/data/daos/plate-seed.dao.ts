@@ -11,7 +11,7 @@ export class PlateSeedDao{
 
     async insertOrReplace(seed: PlateSeed){
         await this.model.deleteMany();
-        const newSeed = new this.model(seed);
+        const newSeed = new this.model({...seed, seedDate: new Date(seed.seedDate)});
         await newSeed.save();
     }
 
@@ -27,7 +27,7 @@ export class PlateSeedDao{
         return {
             exceptions: seed.exceptions,
             seed: seed.seed,
-            seedDate: seed.seedDate
+            seedDate: seed.seedDate.toISOString()
         }
     }
 

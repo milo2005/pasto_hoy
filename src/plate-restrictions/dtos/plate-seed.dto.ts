@@ -1,4 +1,4 @@
-import { IsArray, IsDate } from "class-validator";
+import { IsArray, IsDateString } from "class-validator";
 
 export enum Days{
     Monday = 0, 
@@ -14,8 +14,8 @@ export class PlateSeedDto {
     @IsArray()
     seed: number[];
 
-    @IsDate()
-    seedDate: Date;
+    @IsDateString()
+    seedDate: string;
 
     @IsArray()
     exceptions: Days[];
